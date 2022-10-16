@@ -1,5 +1,6 @@
 package com.cooksys.ftd.assignments.objects;
 
+import java.util.Objects;
 
 //import java.awt.geom.IllegalPathStateException;
 //
@@ -63,6 +64,11 @@ public class Rational implements IRational {
         }
         return new Rational(numerator, denominator);
     }
+    
+    @Override
+	public int hashCode() {
+		return Objects.hash(denominator, numerator);
+	}
 
     /**
      * @param obj the object to check this against for equality
@@ -71,18 +77,18 @@ public class Rational implements IRational {
      * false otherwise
      */
     @Override
-    public boolean equals(Object obj) {
-
-    	if (this == obj) {
-    		return true;
-    	}
-    	if (obj == null || getClass() != obj.getClass()) {
-    		return false;
-    	}
-    	Rational objRational = (Rational) obj; 
-    	return numerator == objRational.numerator && denominator == objRational.denominator;
-    	    	
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rational other = (Rational) obj;
+		return denominator == other.denominator && numerator == other.numerator;
+	}
+    
+    
 
     /**
      * If this is positive, the string should be of the form `numerator/denominator`
@@ -99,4 +105,6 @@ public class Rational implements IRational {
     		return Math.abs(this.numerator) + "/" + Math.abs(this.denominator);
     	}
     }
+
+	
 }

@@ -1,5 +1,7 @@
 package com.cooksys.ftd.assignments.objects;
 
+import java.util.Objects;
+
 //import com.cooksys.ftd.assignments.objects.util.MissingImplementationException;
 
 public class SimplifiedRational implements IRational {
@@ -125,6 +127,11 @@ public class SimplifiedRational implements IRational {
     	return new SimplifiedRational(numerator,denominator);
     }
 
+    @Override
+	public int hashCode() {
+		return Objects.hash(denominator, numerator);
+	}
+
     /**
      * @param obj the object to check this against for equality
      * @return true if the given obj is a rational value and its
@@ -132,16 +139,16 @@ public class SimplifiedRational implements IRational {
      * false otherwise
      */
     @Override
-    public boolean equals(Object obj) {
-    	if (this == obj) {
-    		return true;
-    	}
-    	if (obj == null || getClass() != obj.getClass()) {
-    		return false;
-    	}
-    	SimplifiedRational objSimpRational = (SimplifiedRational) obj; 
-    	return numerator == objSimpRational.numerator && denominator == objSimpRational.denominator;
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SimplifiedRational other = (SimplifiedRational) obj;
+		return denominator == other.denominator && numerator == other.numerator;
+	}
 
     /**
      * If this is positive, the string should be of the form `numerator/denominator`
@@ -158,4 +165,7 @@ public class SimplifiedRational implements IRational {
     		return Math.abs(this.numerator) + "/" + Math.abs(this.denominator);
     	}
     }
+    
+    
+    
 }
